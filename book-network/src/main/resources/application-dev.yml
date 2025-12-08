@@ -34,6 +34,9 @@ application:
     jwt:
       secret-key: ${JWT_SECRET}
       expiration: ${EXPIRATION}
+  mailing:
+    frontend:
+      activation-url: http://localhost:4200/activate-account
 
 management:
   endpoints:
