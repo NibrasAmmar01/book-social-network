@@ -1,5 +1,6 @@
 package com.project.book.auth;
 
+import com.project.book.email.EmailService;
 import com.project.book.role.RoleRepository;
 import com.project.book.user.Token;
 import com.project.book.user.TokenRepository;
@@ -20,6 +21,7 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final TokenRepository tokenRepository;
+    private final EmailService emailService;
 
     public void register(RegistrationRequest request) {
         var userRole = roleRepository.findByName("USER")
