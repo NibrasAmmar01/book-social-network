@@ -1,5 +1,6 @@
 package com.project.book.book;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,6 +13,21 @@ public class BookMapper {
                 .synopsis(request.synopsis())
                 .archived(false)
                 .shareable(Boolean.parseBoolean(request.shareable()))
+                .build();
+    }
+
+    public BookResponse toBookResponse(@NotNull Book book) {
+        return BookResponse.builder()
+                .id(book.getId())
+                .title(book.getTitle())
+                .authorName(book.getAuthorName())
+                .isbn(book.getIsbn())
+                .synopsis(book.getSynopsis())
+                .rate(book.getRate())
+                .archived(book.isArchived())
+                .shareable(book.isShareable())
+                .owner(book.getOwner().FullName())
+                //.cover()
                 .build();
     }
 }

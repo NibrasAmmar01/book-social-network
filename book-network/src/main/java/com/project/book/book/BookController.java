@@ -3,12 +3,9 @@ package com.project.book.book;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("books")
@@ -21,5 +18,10 @@ public class BookController {
     @PostMapping
     public ResponseEntity<Integer> saveBook(@Valid @RequestBody BookRequest request, Authentication connectedUser){
         return ResponseEntity.ok(service.save(request, connectedUser));
+    }
+
+    @GetMapping("{book-id}")
+    public ResponseEntity<BookResponse> findBookById(@PathVariable("book-id") Integer bookId){
+        return ResponseEntity.ok(service.findById(bookId));
     }
 }
