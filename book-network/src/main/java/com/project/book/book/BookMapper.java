@@ -12,7 +12,7 @@ public class BookMapper {
                 .authorName(request.authorName())
                 .synopsis(request.synopsis())
                 .archived(false)
-                .shareable(Boolean.parseBoolean(request.shareable()))
+                .shareable(request.shareable())
                 .build();
     }
 
